@@ -3,6 +3,7 @@ import { NewsCard,Categories,Postwidget } from "./Components";
 import { getRecentPosts } from "./Service";
 import { useEffect,useState } from "react";
 import {NodeProps} from '../../src//app/types'
+import Sport from "./Components/sport/Sport";
 
 
 export default function Home () {
@@ -20,20 +21,25 @@ export default function Home () {
   },[])
   
   return (
+    <>
     <div className="mx-32" >
       <div className="grid grid-cols-1 lg:grid-cols-12  " >
            <div className="lg:col-span-7 col-span-1 "> 
               {post&&<NewsCard post={post}  />} 
            </div>
            <div className="lg:col-span-5 col-span-1" >
-            <div className="lg:sticky relative top-8" >
-              {recentpost&& <Postwidget rposts={recentpost} />}  
+            <div className="" >
+             <Postwidget rposts={recentpost} /> 
                  {/* <Categories /> */}
             </div>
            </div>
       </div>
-       
     </div>
+    <div className="sport">
+        <h1 className="w-full text-center text-2xl text-white py-5 ">ስፖርት</h1>
+             <Sport />
+       </div>
+    </>
   );
 }
 

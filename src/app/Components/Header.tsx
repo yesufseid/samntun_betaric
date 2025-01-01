@@ -12,16 +12,16 @@ export default function Header() {
     });
   }, []);
   return (
-    <div className="container mx-auto px-10 mb-8">
+    <div className="sticky z-50 top-0  container mx-auto px-10 mb-8 ">
       <div className="border-b w-full inline-block border-blue-400 py-8">
         <div className="md:float-left block">
           <Link href="/">
-            <span className="cursor-pointer font-bold text-4xl text-white">Graph CMS</span>
+            <span className="cursor-pointer font-bold text-4xl text-black">Graph CMS</span>
           </Link>
         </div>
         <div className="hidden md:float-left md:contents">
         {["ስፖርት","ፖለቲካ","ዜና","ቀዳሚ ገፅ"].map((category, index) => (
-            <Link key={index} href={`/category/${category}`}><span className="md:float-right mt-2 text-2xl align-middle text-white ml-8 font-semibold cursor-pointer">{category}</span></Link>
+            <Link key={index} href={`/category/${category}`}><span className="md:float-right mt-2 text-2xl align-middle text-black ml-8 font-semibold cursor-pointer">{category}</span></Link>
           ))}
         </div>
       </div>
