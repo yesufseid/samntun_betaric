@@ -5,6 +5,7 @@ import Link from "next/link"
 
 export  function Vertical({post}) {
   return (
+    <Link href={`/post/${post.slug}`}>
     <div className="group relative overflow-hidden mb-5 w-full h-[500px]   ">
     {/* Image */}
     <img
@@ -20,6 +21,7 @@ export  function Vertical({post}) {
         {post.excerpt}
       </p>
   </div>
+  </Link >
   )
 }
 
@@ -27,6 +29,7 @@ export  function Vertical({post}) {
 
 export  function Horizontal({post}) {
   return (
+    <Link href={`/post/${post.slug}`}>
     <div className="group relative overflow-hidden  w-full h-[245px]   ">
     {/* Image */}
     <img
@@ -42,6 +45,7 @@ export  function Horizontal({post}) {
         {post.excerpt.slice(0,100)}
       </p>
   </div>
+  </Link>
   )
 }
 
@@ -49,7 +53,8 @@ export  function Horizontal({post}) {
 
 export  function TextCard({rposts}) {
   return (
-      <div  className="flex items-center w-full bg-slate-300">
+    <Link href={`/post/${rposts.slug}`}>
+      <div  className="flex items-center w-full bg-slate-300 cursor-pointer">
         <div className="flex  gap-2">
           <div className=' relative overflow-hidden group min-w-44'>
           <img
@@ -64,5 +69,6 @@ export  function TextCard({rposts}) {
           </div>
      </div>
      </div>
+     </Link>
   )
 }

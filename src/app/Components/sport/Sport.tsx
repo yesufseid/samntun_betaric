@@ -3,6 +3,7 @@ import React from 'react'
 import { Horizontal,Vertical,TextCard } from './Cards'
 import { getSportPosts } from '@/app/Service'
 import { useEffect,useState } from 'react'
+import Skeletel from '../skele/Skeletel'
 
 const cata=[{name:"ስፖርት",slug:"sport"}]
 export default function Sport() {
@@ -21,13 +22,13 @@ export default function Sport() {
   return (
          <div className='grid grid-cols-3 mx-32 gap-3'>
               <div>
-                {spost && <Vertical  post={spost}  />}
+                {spost?<Vertical  post={spost}  />:<Skeletel variant={"rectangular"} height={500}  /> }
               </div>
               <div className='flex flex-col gap-3'>
-                  {hpost && hpost.map((p)=><Horizontal post={p}  />)} 
+                  {hpost ? hpost.map((p)=>     <Horizontal post={p}  />):<Skeletel variant={"rectangular"} height={200}  />} 
               </div>
               <div>
-                {textpost && textpost.map((p)=><TextCard  rposts={p} />)}
+                {textpost? textpost.map((p)=><TextCard  rposts={p} />):<Skeletel variant={"rectangular"} height={32}  />}
               </div>
          </div>
   )

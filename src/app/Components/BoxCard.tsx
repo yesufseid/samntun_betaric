@@ -6,6 +6,7 @@ type PostProps={
 }
 export default function  BoxCard({post}){
   return (
+    
     <div className="group relative overflow-hidden mb-5  mr-5   ">
       {/* Image */}
       <img

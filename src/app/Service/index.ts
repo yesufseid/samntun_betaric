@@ -57,8 +57,9 @@ export const getSimilarPosts = async (categories:[], slug:string,amount:number) 
     }
   `
   const result:any = await request(graphqlAPI, query, { slug, categories });
-
+ if(result){
   return result.posts;
+ } 
 };
 export const getSportPosts = async () => {
   const query = gql`
@@ -105,7 +106,51 @@ export const getRecentPosts = async () => {
   const result:any = await request(graphqlAPI, query);
   return result.posts
 };
+export const getRecent = async ({slug}) => {
+  const query = gql`
+    query MyQuery {
+  posts( where: {slug_not:${slug}}, last: 4, orderBy:createdAt_DESC) {
+    id
+    slug
+    createdAt
+    featuredImage {
+      url
+    }
+    title
+    excerpt
+      category {
+          name
+          slug
+        }
+  }
+}
+  `
+  const result:any = await request(graphqlAPI, query);
+  return result.posts
+};
 
+export const getNearRecentPosts = async (createdAt) => {
+  const query = gql`
+    query MyQuery {
+  posts(createdAt_lt:${createdAt}},last: 4) {
+    id
+    slug
+    createdAt
+    featuredImage {
+      url
+    }
+    title
+    excerpt
+      category {
+          name
+          slug
+        }
+  }
+}
+  `
+  const result:any = await request(graphqlAPI, query,{createdAt});
+  return result.posts
+};
 export const getCategories = async () => {
   const query = gql`
     query GetGategories {
@@ -207,7 +252,7 @@ export const getAdjacentPosts = async (createdAt, slug) => {
   const query = gql`
     query GetAdjacentPosts($createdAt: DateTime!,$slug:String!) {
       next:posts(
-        first: 1
+        first: 4
         orderBy: createdAt_ASC
         where: {slug_not: $slug, AND: {createdAt_gte: $createdAt}}
       ) {

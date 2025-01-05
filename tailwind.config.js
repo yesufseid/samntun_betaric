@@ -8,9 +8,12 @@ module.exports = {
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode:"class",
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require("tailwind-scrollbar")({ nocompatible: true }),
+  ],
 }
 

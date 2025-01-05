@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="m-0 p-0">
+      <body className="m-0 p-0  bg-white dark:bg-slate-950 scroll-container scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-200">
         <Header />
         {children}
       </body>

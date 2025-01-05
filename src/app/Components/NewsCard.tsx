@@ -4,6 +4,7 @@ import {NodeProps} from "../types"
 import { getSimilarPosts } from "../Service";
 import { useEffect,useState } from "react";
 import BoxCard from "./BoxCard";
+import Link from "next/link";
 
 type PostProps={
   post:NodeProps
@@ -19,6 +20,7 @@ export default function  NewsCard({post}){
     },[post])
   return (
     <div>
+      <Link href={`/post/${post.slug}`} >
     <div className="group relative overflow-hidden mb-5  mr-5 w-[700px] h-[450px]   ">
       {/* Image */}
       <img
@@ -40,10 +42,13 @@ export default function  NewsCard({post}){
         </p>
       </div>
     </div>
+    </Link>
     <div className="flex justify-between">
     {spost&&spost.map((post)=>{
       return(
+        <Link href={`/post/${post.slug}`} >
         <BoxCard  post={post}  />
+        </Link>
       )
     })}
     </div>

@@ -2,7 +2,7 @@
 import { NewsCard,Categories,Postwidget } from "./Components";
 import { getRecentPosts } from "./Service";
 import { useEffect,useState } from "react";
-import {NodeProps} from '../../src//app/types'
+import Skeletel from "./Components/skele/Skeletel";
 import Sport from "./Components/sport/Sport";
 
 
@@ -22,15 +22,14 @@ export default function Home () {
   
   return (
     <>
-    <div className="mx-32" >
+    <div className="mx-32 scroll-container scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-200" >
       <div className="grid grid-cols-1 lg:grid-cols-12  " >
            <div className="lg:col-span-7 col-span-1 "> 
-              {post&&<NewsCard post={post}  />} 
+              {post?<NewsCard post={post}  />:<Skeletel  height={450} width={700} variant={"rectangular"} />} 
            </div>
            <div className="lg:col-span-5 col-span-1" >
             <div className="" >
-             <Postwidget rposts={recentpost} /> 
-                 {/* <Categories /> */}
+             <Postwidget rposts={recentpost} />    
             </div>
            </div>
       </div>
