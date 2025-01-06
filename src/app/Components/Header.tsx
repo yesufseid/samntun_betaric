@@ -1,8 +1,8 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import { MdMenu } from "react-icons/md";
+import { IoIosSearch } from "react-icons/io";
 import Link from "next/link"
-import { getCategories } from '../Service';
 import ThemeToggle from './Themetoggle';
 import moment from "moment-timezone";
 import { FaTwitter, FaFacebookF,FaYoutube ,FaInstagram , FaTelegramPlane,FaWhatsapp } from "react-icons/fa";
@@ -11,7 +11,7 @@ import { FaTwitter, FaFacebookF,FaYoutube ,FaInstagram , FaTelegramPlane,FaWhats
 export default function Header() {
   const [currentTime, setCurrentTime] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
-  const [categories, setCategories] = useState([]);
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     // Set the current time when the component mounts
     const interval = setInterval(() => {
@@ -20,11 +20,7 @@ export default function Header() {
 
     return () => clearInterval(interval); // Cleanup interval on unmount
   }, []);
-  useEffect(() => {
-    getCategories().then((newCategories) => {
-      setCategories(newCategories);
-    });
-  }, []);
+  
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -37,11 +33,11 @@ export default function Header() {
   return (
     <div className={` sticky z-50 top-0 bg-white dark:bg-slate-950   mb-8  shadow-md shadow-gray-100 dark:shadow-slate-900
     transition-transform duration-500  ${
-        isScrolled ? "-translate-y-28" : "translate-y-0"
+        isScrolled ? "md:-translate-y-28 -translate-y-20 " : "translate-y-0"
       } `}>
-      <div className='bg-slate-900  w-full h-8 overflow-y-hidden' >
-        <div className='mx-32 flex justify-between items-center'>
-              <div className='flex gap-3 text-black dark:text-white items-center'>
+      <div className='bg-slate-900  hidden md:flex w-full h-8 overflow-y-hidden' >
+        <div className=' md:mx-32 w-full flex justify-between items-center'>
+             <div className='flex gap-3 text-black dark:text-white items-center'>
                   <p >{currentTime}</p>
                   <hr className='h-8 w-[1px] bg-slate-300 ' />
                   <div className='flex items-center gap-3'>{["English","አማረኛ","العربية","Oromia","Afar"].map(p=><p className='text-white'>{p}</p>) }</div>
@@ -51,16 +47,36 @@ export default function Header() {
               </div>
         </div>
       </div>
-        <div className="flex justify-between h-20 items-center  mx-32  border-b  border-blue-400">
-           <div  >
-
-           </div>
+        <div className="flex justify-between md:justify-between h-20 items-center  md:mx-32  border-b  border-blue-400">
+           <div className='md:hidden flex w-fit'  >
+                <MdMenu onClick={()=>setOpen(!open)} className='text-black dark:text-white h-10 w-10 '  />
+                <div
+        className={`${
+          open ? "block opacity-100" : "hidden opacity-0"
+        }   transition-opacity duration-1000 ease-in-out md:hidden bg-white dark:bg-slate-950 text-black  dark:text-white  w-full absolute top-32`}
+      >
+        <div className="flex flex-col py-4 ">
+        <div className=' text-black dark:text-white'>
+                  <p >{currentTime}</p>
+                  <div className='flex  justify-between py-2 text-lg mx-2 '><p>Dark Mode</p> <ThemeToggle /></div>
+                  <p className='py-2 text-lg mx-2'>Languages</p>
+                  <div className='w-full mt-2 bg-slate-100 dark:bg-slate-900'>{["English","አማረኛ","العربية","Oromia","Afar"].map(p=><p className='w-full pl-2 py-2 border-b-2 border-slate-300  '>{p}</p>) }</div>
+              </div>
+  
+        </div>
+      </div>
+         </div>
           <Link href="/">
             <span className="cursor-pointer font-bold text-4xl text-black dark:text-white">Graph CMS</span>
           </Link>
+          <div className='flex justify-between gap-5'>
+            <div className="md:flex hidden" >
           <ThemeToggle />
+          </div>
+          <IoIosSearch className='text-black dark:text-white h-8 w-8 ' />
+          </div>
         </div>
-        <div className=" flex gap-8 py-2 justify-end mx-32  text-black dark:text-white">
+        <div className=" flex gap-8 py-2 justify-center md:justify-end md:mx-32  text-black dark:text-white">
         {["ቀዳሚ ገፅ","ስፖርት","ፖለቲካ","ዜና"].map((category, index) => (
             <Link key={index} href={`/category/${category}`}><span className="text-2xl  font-semibold cursor-pointer">{category}</span></Link>
           ))}

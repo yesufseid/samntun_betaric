@@ -22,8 +22,7 @@ export default function WidgetSkeletel() {
           <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
           </div>
         </div>
-      </div>
-      
+      </div>   
     </Stack>
   );
 }

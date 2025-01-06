@@ -20,14 +20,14 @@ export default function Sport() {
        Handler()
       },[])
   return (
-         <div className='grid grid-cols-3 mx-32 gap-3'>
-              <div>
+         <div className='md:grid md:grid-cols-3 md:mx-32 gap-3'>
+              <div className='hidden md:flex'>
                 {spost?<Vertical  post={spost}  />:<Skeletel variant={"rectangular"} height={500}  /> }
               </div>
               <div className='flex flex-col gap-3'>
                   {hpost ? hpost.map((p)=>     <Horizontal post={p}  />):<Skeletel variant={"rectangular"} height={200}  />} 
               </div>
-              <div>
+              <div className='my-2 md:my-0'>
                 {textpost? textpost.map((p)=><TextCard  rposts={p} />):<Skeletel variant={"rectangular"} height={32}  />}
               </div>
          </div>

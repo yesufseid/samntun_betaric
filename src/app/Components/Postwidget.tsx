@@ -8,7 +8,7 @@ import WidgetSkeletel from './skele/widget';
 
 export default function Postwidget({rposts}) {
   return (
-    <div className="bg-white  text-black dark:text-white dark:bg-slate-950 shadow-lg rounded-lg  pb-12 mb-8">
+    <div className="bg-white  text-black dark:text-white dark:bg-slate-950 shadow-lg rounded-lg  pb-12 ">
       <div>
       <h3 className="text-xl  font-semibold  w-fit  p-0 m-0"> {"የመረጥንላችሁ"} </h3>
       <hr className='h-2 w-10 rounded-full bg-red-700 mb-2' />

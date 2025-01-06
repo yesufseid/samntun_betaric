@@ -20,7 +20,7 @@ export default function PostDetail({category,createdAt,slug,title,excerpt,featur
    const cata=category[0].name
   return (
     <>
-    <div className="bg-white dark:bg-slate-950 text-black dark:text-white shadow-lg rounded-lg  pb-12 mb-8">
+    <div className="bg-white dark:bg-slate-950 text-black dark:text-white shadow-lg rounded-lg  md:pb-12 ">
        <h1 className='w-fit px-5 py-2 bg-red-700 rounded-xl text-center justify-center '>{cata}</h1>
        <h1 className="text-3xl font-semibold border-b-2 border-slate-300 pb-2 ">{title}</h1>
        <div className="font-medium  flex w-full justify-between">
