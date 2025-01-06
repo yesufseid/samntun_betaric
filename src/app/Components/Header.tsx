@@ -1,15 +1,25 @@
 "use client"
 import React, { useState, useEffect } from 'react';
+import { MdMenu } from "react-icons/md";
 import Link from "next/link"
 import { getCategories } from '../Service';
 import ThemeToggle from './Themetoggle';
 import moment from "moment-timezone";
 import { FaTwitter, FaFacebookF,FaYoutube ,FaInstagram , FaTelegramPlane,FaWhatsapp } from "react-icons/fa";
  const icon=[<FaTwitter  className='text-white'  />, <FaFacebookF className='text-white' />,<FaYoutube className='text-white' /> ,<FaInstagram  className='text-white' />, <FaTelegramPlane className='text-white' />,<FaWhatsapp className='text-white' />]
-const currentTime = moment().tz("Africa/Addis_Ababa").format("YYYY/M/D HH:mm [EAT]");
+
 export default function Header() {
+  const [currentTime, setCurrentTime] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
   const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    // Set the current time when the component mounts
+    const interval = setInterval(() => {
+      setCurrentTime(moment().format("YYYY/M/D HH:mm EAT"));
+    }, 1000); // Update every second
+
+    return () => clearInterval(interval); // Cleanup interval on unmount
+  }, []);
   useEffect(() => {
     getCategories().then((newCategories) => {
       setCategories(newCategories);
@@ -42,6 +52,9 @@ export default function Header() {
         </div>
       </div>
         <div className="flex justify-between h-20 items-center  mx-32  border-b  border-blue-400">
+           <div  >
+
+           </div>
           <Link href="/">
             <span className="cursor-pointer font-bold text-4xl text-black dark:text-white">Graph CMS</span>
           </Link>
@@ -56,3 +69,5 @@ export default function Header() {
     </div>
   )
 }
+
+

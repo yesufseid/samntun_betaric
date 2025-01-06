@@ -1,4 +1,5 @@
 import { gql, request } from 'graphql-request'
+import { log } from 'util'
 const graphqlAPI=process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT || "hellow"
 
 export const Getpost=async()=>{
@@ -30,9 +31,13 @@ export const Getpost=async()=>{
     }
   }
 }`
+try {
+  const results:any=await request(graphqlAPI,query,[{name:"ስፖርት",slug:"sport"}])
+  return results.postsConnection.edges
+} catch (error) {
+  console.log(error); 
+}
 
-const results:any=await request(graphqlAPI,query,[{name:"ስፖርት",slug:"sport"}])
-return results.postsConnection.edges
 }
 export const getSimilarPosts = async (categories:[], slug:string,amount:number) => {
   const query = gql`
@@ -56,10 +61,14 @@ export const getSimilarPosts = async (categories:[], slug:string,amount:number) 
       }
     }
   `
-  const result:any = await request(graphqlAPI, query, { slug, categories });
- if(result){
-  return result.posts;
- } 
+  try {
+    const result:any = await request(graphqlAPI, query, { slug, categories ,amount});
+     return result.posts;
+  } catch (error) {
+    console.log(error);
+    
+  }
+ 
 };
 export const getSportPosts = async () => {
   const query = gql`
@@ -80,9 +89,12 @@ export const getSportPosts = async () => {
   }
 }
   `
-  const result:any = await request(graphqlAPI, query);
-
-  return result.posts;
+  try {
+    const results:any=await request(graphqlAPI,query)
+    return results.posts;
+  } catch (error) {
+    console.log(error); 
+  }
 }
 export const getRecentPosts = async () => {
   const query = gql`
@@ -103,8 +115,13 @@ export const getRecentPosts = async () => {
   }
 }
   `
-  const result:any = await request(graphqlAPI, query);
-  return result.posts
+  try {
+    const result:any = await request(graphqlAPI, query);
+    return result.posts
+  } catch (error) {
+    console.log(error);
+  }
+ 
 };
 export const getRecent = async ({slug}) => {
   const query = gql`
@@ -125,8 +142,14 @@ export const getRecent = async ({slug}) => {
   }
 }
   `
-  const result:any = await request(graphqlAPI, query);
-  return result.posts
+  try {
+    const result:any = await request(graphqlAPI, query,{slug});
+    return result.posts
+  } catch (error) {
+     console.log(error);
+     
+  }
+ 
 };
 
 export const getNearRecentPosts = async (createdAt) => {
@@ -148,8 +171,14 @@ export const getNearRecentPosts = async (createdAt) => {
   }
 }
   `
-  const result:any = await request(graphqlAPI, query,{createdAt});
-  return result.posts
+  try {
+    const result:any = await request(graphqlAPI, query,{createdAt});
+    return result.posts
+  } catch (error) {
+     console.log(error);
+     
+  }
+ 
 };
 export const getCategories = async () => {
   const query = gql`
@@ -193,9 +222,14 @@ export const getPostDetails = async (slug:string) => {
   }
 }
   `
-
+try {
   const results:any = await request(graphqlAPI, query, { slug });
   return results.post
+} catch (error) {
+  console.log(error);
+  
+}
+  
 };  
 
 export const submitComment = async (obj:{}) => {

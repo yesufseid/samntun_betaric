@@ -29,7 +29,7 @@ type CategoryProps={
     title:string
     excerpt:string
     featuredImage:{url:any}
-    category:CategoryProps
+    category:[]
   }
 
   type EdageProps={

@@ -8,8 +8,12 @@ import WidgetSkeletel from './skele/widget';
 
 export default function Postwidget({rposts}) {
   return (
-    <div className="bg-white  text-black dark:text-white dark:bg-slate-950 shadow-lg rounded-lg p-8 pb-12 mb-8">
-    <h3 className="text-xl mb-2 font-semibold  w-fit   flex-col gap-2"> {"የመረጥንላችሁ"} <hr className='h-2 w-10 rounded-full bg-red-700' /></h3>
+    <div className="bg-white  text-black dark:text-white dark:bg-slate-950 shadow-lg rounded-lg  pb-12 mb-8">
+      <div>
+      <h3 className="text-xl  font-semibold  w-fit  p-0 m-0"> {"የመረጥንላችሁ"} </h3>
+      <hr className='h-2 w-10 rounded-full bg-red-700 mb-2' />
+      </div>
+   
     {rposts?rposts.map((post, index) => (
       <Link href={`/post/${post.slug}`}  key={index}>
       <div key={index} className="flex items-center w-full mb-4">
@@ -23,7 +27,10 @@ export default function Postwidget({rposts}) {
           />
             </div>
           <div className='flex flex-col gap-3'>
-          <p className={` font-xl font-semibold  w-fit flex gap-2 items-center`}><hr className='h-10 w-2 rounded-full bg-red-700' />{post.category[0].name }</p>
+            <div className='flex'>
+            <hr className='h-10 w-2 rounded-full bg-red-700' />
+          <p className={` font-xl font-semibold  w-fit flex gap-2 items-center`}>{post.category[0].name }</p> 
+          </div>
           <p  className="text-md text-balance" >{  post.title}</p>
           </div>
         </div>
