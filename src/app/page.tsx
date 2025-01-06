@@ -1,5 +1,5 @@
 "use client"
-import { NewsCard,Categories,Postwidget } from "./Components";
+import { NewsCard,Postwidget } from "./Components";
 import { getRecentPosts } from "./Service";
 import { useEffect,useState } from "react";
 import Skeletel from "./Components/skele/Skeletel";

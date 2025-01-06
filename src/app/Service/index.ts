@@ -1,5 +1,5 @@
 import { gql, request } from 'graphql-request'
-import { log } from 'util'
+
 const graphqlAPI=process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT || "hellow"
 
 export const Getpost=async()=>{
@@ -32,6 +32,7 @@ export const Getpost=async()=>{
   }
 }`
 try {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const results:any=await request(graphqlAPI,query,[{name:"ስፖርት",slug:"sport"}])
   return results.postsConnection.edges
 } catch (error) {
@@ -62,6 +63,7 @@ export const getSimilarPosts = async (categories:[], slug:string,amount:number) 
     }
   `
   try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const result:any = await request(graphqlAPI, query, { slug, categories ,amount});
      return result.posts;
   } catch (error) {
@@ -90,6 +92,7 @@ export const getSportPosts = async () => {
 }
   `
   try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const results:any=await request(graphqlAPI,query)
     return results.posts;
   } catch (error) {
@@ -116,6 +119,7 @@ export const getRecentPosts = async () => {
 }
   `
   try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const result:any = await request(graphqlAPI, query);
     return result.posts
   } catch (error) {
@@ -143,6 +147,7 @@ export const getRecent = async ({slug}) => {
 }
   `
   try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const result:any = await request(graphqlAPI, query,{slug});
     return result.posts
   } catch (error) {
@@ -172,6 +177,7 @@ export const getNearRecentPosts = async (createdAt) => {
 }
   `
   try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const result:any = await request(graphqlAPI, query,{createdAt});
     return result.posts
   } catch (error) {
@@ -180,20 +186,7 @@ export const getNearRecentPosts = async (createdAt) => {
   }
  
 };
-export const getCategories = async () => {
-  const query = gql`
-    query GetGategories {
-        categories(orderBy:createdAt_DESC) {
-          name
-          slug
-        }
-    }
-  `;
 
-  const result:any = await request(graphqlAPI, query);
-
-  return result.categories;
-};
 export const getPostDetails = async (slug:string) => {
   const query = gql`
      query MyQuery {
@@ -223,6 +216,7 @@ export const getPostDetails = async (slug:string) => {
 }
   `
 try {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const results:any = await request(graphqlAPI, query, { slug });
   return results.post
 } catch (error) {
@@ -232,87 +226,3 @@ try {
   
 };  
 
-export const submitComment = async (obj:{}) => {
-  const result = await fetch('/api', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body:JSON.stringify(obj)
-  });
-  return result
-};
-
-export const getComments = async (slug:string) => {
-  const query = gql`
-    query GetComments($slug:String!) {
-      comments(where: {post: {slug:"${slug}"}}){
-        name
-        createdAt
-        comment
-      }
-    }
-  `;
-
-  const result:any = await request(graphqlAPI, query, { slug });
-
-  return result.comments;
-};
-export const getFeaturedPosts = async () => {
-  const query = gql`
-    query GetCategoryPost() {
-      posts(where: {featuredPost: true}) {
-        author {
-          name
-          photo {
-            url
-          }
-        }
-        featuredImage {
-          url
-        }
-        title
-        slug
-        createdAt
-      }
-    }   
-  `;
-
-  const result:any = await request(graphqlAPI, query);
-
-  return result.posts;
-};
-export const getAdjacentPosts = async (createdAt, slug) => {
-  const query = gql`
-    query GetAdjacentPosts($createdAt: DateTime!,$slug:String!) {
-      next:posts(
-        first: 4
-        orderBy: createdAt_ASC
-        where: {slug_not: $slug, AND: {createdAt_gte: $createdAt}}
-      ) {
-        title
-        featuredImage {
-          url
-        }
-        createdAt
-        slug
-      }
-      previous:posts(
-        first: 1
-        orderBy: createdAt_DESC
-        where: {slug_not: $slug, AND: {createdAt_lte: $createdAt}}
-      ) {
-        title
-        featuredImage {
-          url
-        }
-        createdAt
-        slug
-      }
-    }
-  `;
-
-  const result:any = await request(graphqlAPI, query, { slug, createdAt });
-
-  return { next: result.next[0], previous: result.previous[0] };
-};

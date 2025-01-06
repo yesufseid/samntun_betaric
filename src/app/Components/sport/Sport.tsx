@@ -5,7 +5,7 @@ import { getSportPosts } from '@/app/Service'
 import { useEffect,useState } from 'react'
 import Skeletel from '../skele/Skeletel'
 
-const cata=[{name:"ስፖርት",slug:"sport"}]
+
 export default function Sport() {
    const [spost,setSpost]=useState()
    const [hpost,setHpost]=useState([])
@@ -25,10 +25,10 @@ export default function Sport() {
                 {spost?<Vertical  post={spost}  />:<Skeletel variant={"rectangular"} height={500}  /> }
               </div>
               <div className='flex flex-col gap-3'>
-                  {hpost ? hpost.map((p)=>     <Horizontal post={p}  />):<Skeletel variant={"rectangular"} height={200}  />} 
+                  {hpost ? hpost.map((p)=>     <Horizontal post={p} key={p}  />):<Skeletel variant={"rectangular"} height={200}  />} 
               </div>
               <div className='my-2 md:my-0'>
-                {textpost? textpost.map((p)=><TextCard  rposts={p} />):<Skeletel variant={"rectangular"} height={32}  />}
+                {textpost? textpost.map((p)=><TextCard  rposts={p}  key={p}/>):<Skeletel variant={"rectangular"} height={32}  />}
               </div>
          </div>
   )

@@ -1,9 +1,7 @@
 import React from "react";
-import {NodeProps} from "../types"
 
-type PostProps={
-  post:NodeProps
-}
+
+
 export default function  BoxCard({post}){
   return (
     

@@ -1,5 +1,4 @@
-"use client"
-import React, { useState, useEffect } from 'react';;
+
 import Link from 'next/link';
 import WidgetSkeletel from './skele/widget';
 
@@ -36,7 +35,7 @@ export default function Postwidget({rposts}) {
         </div>
       </div>
       </Link>
-    )):[1,2,3,4].map(p=><WidgetSkeletel />)}
+    )):[1,2,3,4].map(p=><WidgetSkeletel key={p} />)}
   </div>
   )
 }

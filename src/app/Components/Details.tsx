@@ -1,9 +1,8 @@
 "use client"
-import { Categories, Postwidget,PostDetail,Author,Comments,CommentsForm } from '../../app/Components';
+import { Postwidget,PostDetail} from '../../app/Components';
 import {getPostDetails,getSimilarPosts,getRecentPosts, } from "../Service"
 import { useEffect,useState} from 'react';
 import {PostProps} from "../types"
-import  {AdjacentPosts} from "../Section"
 import Link from 'next/link';
 import Skeletel from './skele/Skeletel';
 import Skeleton from '@mui/material/Skeleton';
@@ -22,16 +21,16 @@ export default function Details({slug}:Props) {
   useEffect(() => {
     const handler=async()=>{
       try {
-        await  getPostDetails(slug).then((posts:any) => {
+        await  getPostDetails(slug).then((posts) => {
           setPost(posts) 
-        posts &&  getRecentPosts().then((rposts:any)=>{
+        posts &&  getRecentPosts().then((rposts)=>{
           const fill =(value)=>{
             return value.slug !== posts.slug
           }
              const pp=rposts.filter(fill)
              setRpost(pp)
               })
-        posts &&  getSimilarPosts(posts.category,posts.slug,4).then((sposts:any)=>{
+        posts &&  getSimilarPosts(posts.category,posts.slug,4).then((sposts)=>{
               setSposts(sposts)
         })
         });
@@ -76,7 +75,7 @@ export default function Details({slug}:Props) {
     {sposts[0]?(
       <>{sposts.map((spost)=>{
         return (
-    <Link href={`/post/${spost.slug}`}>
+    <Link key={spost.slug} href={`/post/${spost.slug}`}>
     <div className="group relative overflow-hidden  w-full h-[full]   ">
     {/* Image */}
     <img
@@ -98,7 +97,7 @@ export default function Details({slug}:Props) {
   })}</>
   ):(<>{[1,2,3,4].map((p)=>{
     return(
-      <div className="group relative overflow-hidden  w-full h-[full]   ">
+      <div key={p} className="group relative overflow-hidden  w-full h-[full]   ">
         <Skeletel  variant={"rectangular"} height={200} />
         <Skeleton variant={"text"} sx={{ fontSize: '1rem' }} width={150}  />
         <Skeleton variant={"text"} sx={{ fontSize: '1rem' }} width={100}  />

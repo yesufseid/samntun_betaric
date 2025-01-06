@@ -2,11 +2,7 @@ import * as React from 'react';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 
-type props={
-  variant:"circular" |"rectangular"|"rounded"|"text"
-  width:number
-  height:number
-}
+
 
 export default function WidgetSkeletel() {
   return (

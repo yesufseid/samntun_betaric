@@ -1,8 +1,6 @@
 "use client"
 import moment from 'moment';
-import {PostProps} from "../types"
 import React from 'react';
-import TextHandler from '../utils';
 import parse from 'html-react-parser';
 
 
@@ -16,7 +14,7 @@ type Props={
   content:{html:string}
 }
 
-export default function PostDetail({category,createdAt,slug,title,excerpt,featuredImage,content}:Props) {
+export default function PostDetail({category,createdAt,title,featuredImage,content}:Props) {
    const cata=category[0].name
   return (
     <>

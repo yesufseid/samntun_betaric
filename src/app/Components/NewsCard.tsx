@@ -1,14 +1,11 @@
 "use client"
 import React from "react";
-import {NodeProps} from "../types"
 import { getSimilarPosts } from "../Service";
 import { useEffect,useState } from "react";
 import BoxCard from "./BoxCard";
 import Link from "next/link";
 
-type PostProps={
-  post:NodeProps
-}
+
 export default function  NewsCard({post}){
   const [spost,setSpost]=useState([])
     useEffect(()=>{
@@ -34,7 +31,7 @@ export default function  NewsCard({post}){
       <div className="absolute bottom-0  flex flex-col  p-4">
         {/* Badge */}
         <span className="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded-md self-start">
-          {post.category.map((p)=>p.name)}
+          {post.category[0].name}
         </span>
         {/* Headline */}
         <p className="text-white text-lg font-semibold leading-relaxed w-full">
@@ -46,7 +43,7 @@ export default function  NewsCard({post}){
     <div className="flex justify-between">
     {spost&&spost.map((post)=>{
       return(
-        <Link href={`/post/${post.slug}`} >
+        <Link key={post.slug} href={`/post/${post.slug}`} >
         <BoxCard  post={post}  />
         </Link>
       )

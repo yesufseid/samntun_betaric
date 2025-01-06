@@ -6,7 +6,7 @@ import Link from "next/link"
 import ThemeToggle from './Themetoggle';
 import moment from "moment-timezone";
 import { FaTwitter, FaFacebookF,FaYoutube ,FaInstagram , FaTelegramPlane,FaWhatsapp } from "react-icons/fa";
- const icon=[<FaTwitter  className='text-white'  />, <FaFacebookF className='text-white' />,<FaYoutube className='text-white' /> ,<FaInstagram  className='text-white' />, <FaTelegramPlane className='text-white' />,<FaWhatsapp className='text-white' />]
+ const icon=[<FaTwitter  key={1} className='text-white'  />, <FaFacebookF  key={1}  className='text-white' />,<FaYoutube  key={1}  className='text-white' /> ,<FaInstagram   key={1}  className='text-white' />, <FaTelegramPlane  key={1}  className='text-white' />,<FaWhatsapp  key={1}  className='text-white' />]
 
 export default function Header() {
   const [currentTime, setCurrentTime] = useState("");
@@ -40,10 +40,10 @@ export default function Header() {
              <div className='flex gap-3 text-black dark:text-white items-center'>
                   <p >{currentTime}</p>
                   <hr className='h-8 w-[1px] bg-slate-300 ' />
-                  <div className='flex items-center gap-3'>{["English","አማረኛ","العربية","Oromia","Afar"].map(p=><p className='text-white'>{p}</p>) }</div>
+                  <div className='flex items-center gap-3'>{["English","አማረኛ","العربية","Oromia","Afar"].map(p=><p key={p} className='text-white'>{p}</p>) }</div>
               </div>
               <div className='flex gap-5'>
-                    {icon.map(i=>i)}
+                    {icon.map((i,index)=><p key={index}>{i}</p>)}
               </div>
         </div>
       </div>
@@ -60,7 +60,7 @@ export default function Header() {
                   <p >{currentTime}</p>
                   <div className='flex  justify-between py-2 text-lg mx-2 '><p>Dark Mode</p> <ThemeToggle /></div>
                   <p className='py-2 text-lg mx-2'>Languages</p>
-                  <div className='w-full mt-2 bg-slate-100 dark:bg-slate-900'>{["English","አማረኛ","العربية","Oromia","Afar"].map(p=><p className='w-full pl-2 py-2 border-b-2 border-slate-300  '>{p}</p>) }</div>
+                  <div className='w-full mt-2 bg-slate-100 dark:bg-slate-900'>{["English","አማረኛ","العربية","Oromia","Afar"].map(p=><p key={p} className='w-full pl-2 py-2 border-b-2 border-slate-300  '>{p}</p>) }</div>
               </div>
   
         </div>
