@@ -22,12 +22,12 @@ export default function Home () {
   
   return (
     <>
-    <div className="  md:mx-32 scroll-container scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-200" >
-      <div className="grid grid-cols-1 md:grid-cols-12  " >
-           <div className="lg:col-span-7 col-span-1  "> 
+    <div className="  md:mx-32 " >
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-5  " >
+           <div className="md:col-span-7 col-span-1  "> 
               {post?<NewsCard post={post}  />:<Skeletel  height={450} width={700} variant={"rectangular"} />} 
            </div>
-           <div className="lg:col-span-5 col-span-1 ml-5" >
+           <div className="md:col-span-5 col-span-1 " >
              <Postwidget rposts={recentpost} />    
            </div>
       </div>

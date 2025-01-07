@@ -33,7 +33,7 @@ export default function Header() {
   return (
     <div className={` sticky z-50 top-0 bg-white dark:bg-slate-950   mb-8  shadow-md shadow-gray-100 dark:shadow-slate-900
     transition-transform duration-500  ${
-        isScrolled ? "md:-translate-y-28 -translate-y-20 " : "translate-y-0"
+        isScrolled ? "md:-translate-y-28  -translate-y-20 " : "translate-y-0"
       } `}>
       <div className='bg-slate-900  hidden md:flex w-full h-8 overflow-y-hidden' >
         <div className=' md:mx-32 w-full flex justify-between items-center'>
@@ -77,8 +77,8 @@ export default function Header() {
           </div>
         </div>
         <div className=" flex gap-8 py-2 justify-center md:justify-end md:mx-32  text-black dark:text-white">
-        {["ቀዳሚ ገፅ","ስፖርት","ፖለቲካ","ዜና"].map((category, index) => (
-            <Link key={index} href={`/category/${category}`}><span className="text-2xl   font-semibold cursor-pointer">{category}</span></Link>
+        {[{name:"ቀዳሚ ገፅ",path:"/"},{name:"ስፖርት",path:"/section/ስፖርት"},{name:"ፖለቲካ",path:"/section/ፖለቲካ"},{name:"ዜና",path:"/section/ዜና"}].map((category, index) => (
+            <Link key={index} href={`/section/${category.path}`}><span className="text-2xl   font-semibold cursor-pointer">{category.name}</span></Link>
           ))}
         </div>
         

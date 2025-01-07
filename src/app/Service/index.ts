@@ -226,3 +226,30 @@ try {
   
 };  
 
+export const getCategorypost = async (category:string) => {
+  const query = gql`
+   query MyQuery {
+  posts(where: {category_some: {name:"${category}"}}, last: 10) {
+    title
+        excerpt
+        slug
+        featuredImage {
+          url
+        }
+         category {
+          name
+          slug
+        }
+        createdAt
+        slug
+  }
+}
+  `
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const results:any=await request(graphqlAPI,query)
+    return results.posts;
+  } catch (error) {
+    console.log(error); 
+  }
+}
