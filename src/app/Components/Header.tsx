@@ -78,7 +78,7 @@ export default function Header() {
         </div>
         <div className=" flex gap-8 py-2 justify-center md:justify-end md:mx-32  text-black dark:text-white">
         {[{name:"ቀዳሚ ገፅ",path:"/"},{name:"ስፖርት",path:"/section/ስፖርት"},{name:"ፖለቲካ",path:"/section/ፖለቲካ"},{name:"ዜና",path:"/section/ዜና"}].map((category, index) => (
-            <Link key={index} href={`/section/${category.path}`}><span className="text-2xl   font-semibold cursor-pointer">{category.name}</span></Link>
+            <Link key={index} href={`${category.path}`}><span className="text-2xl   font-semibold cursor-pointer">{category.name}</span></Link>
           ))}
         </div>
         
