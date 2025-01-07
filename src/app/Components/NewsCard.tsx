@@ -18,12 +18,12 @@ export default function  NewsCard({post}){
   return (
     <div>
       <Link href={`/post/${post.slug}`} >
-    <div className="group relative overflow-hidden mb-5  mr-5 w-[700px] h-[450px]   ">
+    <div className="group relative overflow-hidden mb-5  mr-5 w-full h-[450px]   ">
       {/* Image */}
       <img
         src={post.featuredImage.url}
         alt="Church"
-        className="w-[700px] h-[450px] object-top  object-cover  shadow-lg  cursor-pointer 
+        className="w-full h-[450px] object-top  object-cover  shadow-lg  cursor-pointer 
          transform transition-transform duration-1000 ease-in-out group-hover:scale-105"
       />
     

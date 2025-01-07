@@ -35,7 +35,7 @@ export default function  SectionCard({category}:props){
     <>
     <div className="grid md:grid-cols-12 grid-cols-1 gap-5">
         {post?(
-        <div className="col-span-8">
+        <div className="md:col-span-8">
       <Link href={`/post/${post.slug}`} >
     <div className="group relative overflow-hidden mb-5  w-full h-[450px]   ">
       {/* Image */}
@@ -57,7 +57,7 @@ export default function  SectionCard({category}:props){
     </Link>
     </div>
     ):<Skeletel  height={450} width={700} variant={"rectangular"} />} 
-    <div className="col-span-4">
+    <div className="md:col-span-4">
     {spost&&spost.map((post)=>{
       return(
         <Link key={post.slug} href={`/post/${post.slug}`} >
@@ -65,7 +65,7 @@ export default function  SectionCard({category}:props){
       {/* Image */}
       <img
         src={post.featuredImage.url}
-        alt="Church"
+        alt="img"
         className="w-full h-[215px] object-top  object-cover  shadow-lg  cursor-pointer 
          transform transition-transform duration-1000 ease-in-out group-hover:scale-105"
       />
