@@ -8,14 +8,6 @@ export const Getpost=async()=>{
   postsConnection {
     edges {
       node {
-        author {
-          bio
-          id
-          photo {
-            url
-          }
-          name
-        }
         createdAt
         slug
         title
@@ -195,13 +187,6 @@ export const getPostDetails = async (slug:string) => {
     excerpt
     featuredImage {
       url
-    }
-    author {
-      name
-      bio
-      photo {
-        url
-      }
     }
     slug
     createdAt

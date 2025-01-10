@@ -12,6 +12,8 @@ export default function Home () {
   useEffect(()=>{
    const Handler=async()=>{
       const posts =await getRecentPosts()
+      console.log(posts);
+      
       const pos =await posts.shift()
        setPost(pos)
      return  setRecentpost(posts)
