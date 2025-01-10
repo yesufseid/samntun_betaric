@@ -22,7 +22,7 @@ export default function PostDetail({category,createdAt,title,featuredImage,conte
        <h1 className='w-fit px-5 py-2 bg-red-700 rounded-xl text-center justify-center '>{cata}</h1>
        <h1 className="text-3xl font-semibold border-b-2 border-slate-300 pb-2 ">{title}</h1>
        <div className="font-medium  flex w-full justify-between">
-        <h1>Graph CMS</h1>
+        <h1>{"ሳምንቱን በታሪክ"}</h1>
         <div className="font-medium  flex w-fit justify-end">
             <p>Published on:</p>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline mr-2 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">

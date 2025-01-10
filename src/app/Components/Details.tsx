@@ -66,11 +66,9 @@ export default function Details({slug}:Props) {
           </div>
           
         </div>
-        <div className='text-black dark:text-white'>
-             <div>
-          <p className='text-2xl font-semibold  w-fit  p-0 m-0'>{"ተዛማጅ ወሬ" }</p>
+        <div className='text-black dark:text-white pt-10'>
+          <p className='text-2xl font-semibold   p-0 m-0'>{"ተዛማጅ ወሬ" }</p>
           <hr className='text-red-700 bg-red-700 w-14 h-2 mb-2 rounded-xl border-none' />
-          </div>
         <div className='grid grid-cols-1  md:grid-cols-4 gap-3 '> 
     {sposts[0]?(
       <>{sposts.map((spost)=>{

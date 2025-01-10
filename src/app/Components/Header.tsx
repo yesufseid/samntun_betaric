@@ -2,9 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import { MdMenu } from "react-icons/md";
 import { IoIosSearch } from "react-icons/io";
+import Image from 'next/image';
 import Link from "next/link"
 import ThemeToggle from './Themetoggle';
 import moment from "moment-timezone";
+import logo from "../../public/logo.jpg"
 import { FaTwitter, FaFacebookF,FaYoutube ,FaInstagram , FaTelegramPlane,FaWhatsapp } from "react-icons/fa";
  const icon=[<FaTwitter  key={1} className='text-white'  />, <FaFacebookF  key={1}  className='text-white' />,<FaYoutube  key={1}  className='text-white' /> ,<FaInstagram   key={1}  className='text-white' />, <FaTelegramPlane  key={1}  className='text-white' />,<FaWhatsapp  key={1}  className='text-white' />]
 
@@ -36,7 +38,7 @@ export default function Header() {
         isScrolled ? "md:-translate-y-28  -translate-y-20 " : "translate-y-0"
       } `}>
       <div className='bg-slate-900  hidden md:flex w-full h-8 overflow-y-hidden' >
-        <div className=' md:mx-32 w-full flex justify-between items-center'>
+        <div className=' md:mx-3  w-full flex justify-between items-center'>
              <div className='flex gap-3 text-black dark:text-white items-center'>
                   <p >{currentTime}</p>
                   <hr className='h-8 w-[1px] bg-slate-300 ' />
@@ -47,7 +49,7 @@ export default function Header() {
               </div>
         </div>
       </div>
-        <div className="flex justify-between md:justify-between h-20 items-center  md:mx-32  border-b  border-blue-400">
+        <div className="flex justify-between md:justify-between h-20 items-center  md:mx-32 mx-3  border-b  border-blue-400">
            <div className='md:hidden flex w-fit'  >
                 <MdMenu onClick={()=>setOpen(!open)} className='text-black dark:text-white h-10 w-10 cursor-pointer '  />
                 <div
@@ -67,7 +69,8 @@ export default function Header() {
       </div>
          </div>
           <Link href="/">
-            <span className="cursor-pointer font-bold text-4xl text-black dark:text-white">Graph CMS</span>
+           <Image src={logo}  alt='logo'  className='w-20 h-12  rounded-full object-center  object-cover   cursor-pointer ' />
+            {/* <span className="cursor-pointer font-bold text-4xl text-black dark:text-white">Graph CMS</span> */}
           </Link>
           <div className='flex justify-between gap-5'>
             <div className="md:flex hidden" >
